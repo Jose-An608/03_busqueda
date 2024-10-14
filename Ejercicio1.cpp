@@ -5,68 +5,47 @@ y buscar si forma parte del polinomio. Usa búsqueda secuencial*/
 using namespace std;
 
 struct monomio{
-	float coef;
-	float exp;
+	int expo;
+	int coef;
 	
 };
 
-int busquedaPol(int , monomio [], monomio);
+int buscar(int, int, int, monomio [] );
 
 int main(){
-	int m;
+	monomio arr[]= {{3,4}, {8,5},{7,2} };
+	int m, n;
+	monomio buscado;
 	
-	cout << "Digite la cantidad de terminos: " << endl;
+	cout << "Digite el exponente a buscar: " << endl;
 	cin >> m;
 	
-	cout << endl;
+	cout << "Digite el coeficiente a buscar: " << endl;
+	cin >> n;
 	
-	monomio arr[m];
+	int p = buscar(m, n, 3,arr);
 	
-	for (int i = 0; i<m; i++){
-		
-		cout << "Termino " << i+1 << " del polinomio: " << endl;
-		
-		cout << "Digite el coficiente: " << endl;
-		cin >> arr[i].coef;
-		
-		cout << "Digite el exponente: " << endl;
-		cin >> arr[i].exp;
-		
-		cout << endl;
-	}
-	
-	cout << "El polinomio o monomio es: " << endl;
-	
-	for (int i = 0; i<m; i++){
-		cout<< arr[i].coef <<"x"<<"^"<<arr[i].exp<< " ";
-	}
-	
-	cout << endl;
-	
-	monomio mon_bus;
-	
-	cout << "Digite el monomio(coeficiente y exponente) que quiere buscar: " << endl;
-	cin >> mon_bus.coef >> mon_bus.exp;
-	
-	int in = busquedaPol(m, arr, mon_bus);
-	
-	if (in >= 0){
-		cout << "El monomio se encuentra en la posicion " << in+1 << " del arreglo. " << endl;
+	if (p!=-1){
+		cout << "El monomio se encuentra en la ubicacion " << p +1 << " del polinomio ";
 	}else{
-		cout << "El monomio no se encuentra en el arreglo. " << endl;
+		cout << "el monomio no se encuentra " << endl;
+		
 	}
 	
 	return 0;
 }
 
-int busquedaPol(int m, monomio arr[], monomio mon_bus){
-	int pos = 0, i=0;
+int buscar(int x, int y , int z , monomio arr[]){
 	
-	for(int i = 0; i<m; i++){
-		if (arr[i].coef == mon_bus.coef && arr[i].exp == mon_bus.exp){
+	int i = 0;
+	
+	while(i < z){
+		if(arr[i].expo == x && arr[i].coef == y){
 			return i;
 		}
+		i++;
 	}
 	return -1;
+	
 }
 
